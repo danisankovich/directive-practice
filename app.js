@@ -6,6 +6,14 @@ app.controller('mainCtrl', function($scope) {
   // $scope.name = "world";
 });
 
+var populations = {
+  china: { rank: 1, name: "China", population: 1373420000, percent: 18.9 },
+  india: { rank: 2, name: "India", population: 1280670000, percent: 17.6 },
+  unitedStates: { rank: 3, name: "United States", population: 322317000, percent: 4.42 },
+  indonesia: { rank: 4, name: "Indonesia", population: 255461700, percent: 3.51 },
+  brazil: { rank: 5, name: "Brazil", population: 205252000, percent: 2.82 }
+};
+
 app.directive("timer", function() {
   return {
     restrict: 'E',
@@ -76,5 +84,18 @@ app.directive("myGreet", function() {
       // console.log(elem, attr)
       return `my-greet-${attr.card}.html`;
     },
+  };
+});
+
+app.directive('prettyTable', function() {
+  return {
+    templateUrl: function(elem, attr) {
+      return "table.html";
+    },
+    controller: function($scope) {
+      $scope.data = populations;
+      $scope.headers= Object.keys($scope.data[Object.keys($scope.data)[0]]);
+      console.log($scope.headers);
+    }
   };
 });
