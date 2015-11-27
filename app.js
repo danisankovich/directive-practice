@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 
 var app = angular.module("plunker", []);
 
@@ -13,7 +13,6 @@ app.directive("timer", function() {
       start: "@start"
     },
     templateUrl: function(elem, attr) {
-      console.log(elem, attr);
       return "timer.html";
     },
     controller: function($scope, $interval) {
@@ -41,6 +40,31 @@ app.directive("timer", function() {
   };
 });
 
+app.directive("myTable", function() {
+  return {
+    restrict: 'E',
+    scope: {
+      what: "@what"
+    },
+    templateUrl: function(elem, attr) {
+      return "my-table.html";
+    },
+    // link: function(scope, element) {
+    //   console.log(scope);
+    // }
+    controller: function($scope, $interval) {
+      $scope.anime = [
+        {name: "Black Lagoon", rating:"17+", genre:"action", lang: "Japanese"},
+        {name: "Elfen Lied", rating:"17+", genre:"thriller", lang: "Japanese"},
+        {name: "Toradora", rating:"14+", genre:"comedy/romance", lang: "Japanese"},
+        {name: "Candy Boy", rating:"14+", genre:"comdy/slice of life", lang: "Japanese"}
+      ];
+      console.log($scope.anime);
+    }
+  };
+});
+
+
 app.directive("myGreet", function() {
   return {
     restrict: 'E',
@@ -51,6 +75,6 @@ app.directive("myGreet", function() {
     templateUrl: function(elem, attr) {
       // console.log(elem, attr)
       return `my-greet-${attr.card}.html`;
-    }
+    },
   };
 });
