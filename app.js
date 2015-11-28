@@ -87,15 +87,31 @@ app.directive("myGreet", function() {
   };
 });
 
-app.directive('prettyTable', function() {
+app.directive('prettyTable', function() { //works for any object
   return {
     templateUrl: function(elem, attr) {
       return "table.html";
     },
-    controller: function($scope) {
-      $scope.data = populations;
-      $scope.headers= Object.keys($scope.data[Object.keys($scope.data)[0]]);
-      console.log($scope.headers);
+    scope: {
+      dataUrl: "@data" //in html. Pass in the file name, without the .json
+    },
+    controller: function($scope, $http) {
+      console.log($scope.dataUrl + ".json");
+      console.log($scope);
+      $http.get($scope.dataUrl+ ".json").then(function(resp) {
+        console.log('resp');
+        $scope.data = resp.data;
+        $scope.headers= Object.keys($scope.data[Object.keys($scope.data)[0]]);
+      });
+      // or///////////
+      // fetch($scope.dataUrl+ ".json").then(function(resp) {
+      //   resp.json().then(function(resp) {
+      //     $scope.$apply(function() {
+      //       $scope.data = resp;
+      //       $scope.headers= Object.keys($scope.data[Object.keys($scope.data)[0]]);
+      //     });
+      //   });
+      // });
     }
   };
 });

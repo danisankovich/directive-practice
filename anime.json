@@ -1,0 +1,6 @@
+{
+  "Black Lagoon":  {"name": "Black Lagoon", "rating":"17+", "genre":"action", "lang": "Japanese"},
+  "Elfen Lied":   {"name": "Elfen Lied", "rating":"17+", "genre":"thriller", "lang": "Japanese"},
+  "Toradora":  {"name": "Toradora", "rating":"14+", "genre":"comedy/romance", "lang": "Japanese"},
+  "Candy Boy":  {"name": "Candy Boy", "rating":"14+", "genre":"comdy/slice of life", "lang": "Japanese"}
+}
